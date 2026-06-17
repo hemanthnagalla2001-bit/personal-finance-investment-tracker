@@ -1,10 +1,14 @@
 import axios from 'axios';
+import { demoAdapter } from '../mock/demoAdapter';
+
+const DEMO_MODE = !process.env.REACT_APP_API_BASE_URL;
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: process.env.REACT_APP_API_BASE_URL || '/api',
   headers: {
     'Content-Type': 'application/json',
   },
+  adapter: DEMO_MODE ? demoAdapter : undefined,
 });
 
 api.interceptors.request.use(

@@ -31,6 +31,20 @@ const Login = () => {
     }
   };
 
+  const handleDemoLogin = async () => {
+    setError('');
+    setLoading(true);
+    try {
+      const res = await loginUser({ email: 'demo@finance.com', password: 'demo' });
+      login(res.data.token, { email: res.data.email, fullName: res.data.fullName });
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Demo login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -69,6 +83,25 @@ const Login = () => {
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
+        <div style={{ margin: '12px 0', textAlign: 'center', color: '#888', fontSize: '13px' }}>or</div>
+        <button
+          type="button"
+          onClick={handleDemoLogin}
+          disabled={loading}
+          style={{
+            width: '100%',
+            padding: '10px',
+            background: 'transparent',
+            border: '1px solid #6c63ff',
+            borderRadius: '6px',
+            color: '#6c63ff',
+            fontSize: '14px',
+            cursor: 'pointer',
+            fontWeight: 500,
+          }}
+        >
+          Try Demo
+        </button>
         <p className="auth-footer">
           Don't have an account? <Link to="/register">Register</Link>
         </p>

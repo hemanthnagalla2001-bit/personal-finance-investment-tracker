@@ -44,6 +44,20 @@ const Register = () => {
           <h1>Finance Tracker</h1>
           <p>Create your account</p>
         </div>
+        <div style={{
+          background: '#6c63ff18',
+          border: '1px solid #6c63ff44',
+          borderRadius: '6px',
+          padding: '10px 14px',
+          fontSize: '13px',
+          marginBottom: '16px',
+          color: '#a09cf7',
+          textAlign: 'center',
+        }}>
+          This is a demo app.{' '}
+          <Link to="/login" style={{ color: '#6c63ff', fontWeight: 600 }}>Try demo login</Link>{' '}
+          to explore all features instantly.
+        </div>
         <form onSubmit={handleSubmit} className="auth-form">
           {error && <div className="error-message">{error}</div>}
           <div className="form-group">
